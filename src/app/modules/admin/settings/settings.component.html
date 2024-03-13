@@ -1,0 +1,239 @@
+<form [formGroup]="profileDetailsForm">
+    <div class="inventory-management-cls">
+        <div class="list-of-asset h-100">
+            <!-- Profile info start code -->
+            <div class="profile-all-cls-add">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="left-side-all d-flex align-items-center">
+                        <div class="left-profile">
+                            <img [src]="userProfileDetails?.vImageUrl" alt="profile-add" class="img-fluid">
+                        </div>
+                        <div class="second-content ms-4">
+                            <h6>{{userProfileDetails?.vFirstName}} {{userProfileDetails?.vLastName}}</h6>
+                            <!-- <p>UI/UX Designer</p> -->
+                        </div>
+                    </div>
+                    <div class="right-side-all">
+                        <button type="button" class="btn btn-outline-primary editable-cls-all" data-bs-toggle="modal"
+                            data-bs-target="#createeditableModal" (click)="onCloseEditProfile()">Edit</button>
+
+
+                        <!-- modal code start -->
+                        <div class="modal fade new-assets-modal" id="createeditableModal" tabindex="-1"
+                            aria-labelledby="createeditableModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title mb-0" id="createeditableModalLabel">Edit Profile</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close" (click)="onCloseEditProfile()"></button>
+                                    </div>
+                                    <div class="modal-body p-4">
+                                        <div class="assign-employee">
+                                            <div class="heading-product">
+                                                <h6>Please enter the details</h6>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <div class="details-employee">
+                                                        <div class="left-side-all">
+                                                            <div class="left-profile text-center">
+                                                                <img *ngIf="!uploadData"
+                                                                    [src]="userProfileDetails?.vImageUrl"
+                                                                    alt="profile-add" class="img-fluid">
+                                                                <img *ngIf="uploadData" [src]="showImage"
+                                                                    alt="profile-add" class="img-fluid">
+                                                                <div class="upload-photo-cls upload-file">
+                                                                    <input #imageSelector type="file" class="file-input"
+                                                                        id="file-input" accept="image/*"
+                                                                        (change)="handleFileSelect($event)">
+                                                                    <button type="button"
+                                                                        class="btn btn-outline-primary mt-3">Upload
+                                                                        Photo</button>
+                                                                    <br>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-9 mt-2">
+                                                    <div class="row profile-all-cls-add-personal-info">
+                                                        <div class="col-lg-6 my-2">
+                                                            <label>First Name</label>
+                                                            <input type="text" class="form-control" id="vFirstName"
+                                                                placeholder="First name" formControlName="vFirstName">
+                                                            <span class="text-danger"
+                                                                *ngIf="profileDetailsForm.controls['vFirstName'].touched  && profileDetailsForm.controls['vFirstName'].errors?.['required']">
+                                                                First Name is required
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-lg-6 my-2">
+                                                            <label>Last Name</label>
+                                                            <input type="text" class="form-control" id="vLastName"
+                                                                placeholder="Last name" formControlName="vLastName">
+                                                            <span class="text-danger"
+                                                                *ngIf="profileDetailsForm.controls['vLastName'].touched  && profileDetailsForm.controls['vLastName'].errors?.['required']">
+                                                                Last Name is required
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary save-btn w-25"
+                                            data-bs-dismiss="modal" (click)="onEditProfileDetails()"
+                                            [disabled]="!profileDetailsForm.valid">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal code over -->
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- Profile info start over -->
+        </div>
+    </div>
+
+</form>
+<form [formGroup]="userDetailsForm">
+    <!-- Personal info code start -->
+    <div class="inventory-management-cls">
+        <div class="list-of-asset h-100">
+            <div class="profile-all-cls-add-personal-info">
+                <h5>Personal Information</h5>
+                <hr>
+
+                <div class="row personal-info-add-all-in">
+                    <div class="col-lg-6">
+                        <label>Email</label>
+                        <input type="text" class="form-control" formControlName="vEmailId" id="vEmailId"
+                            placeholder="Enter Email">
+                        <span class="text-danger"
+                            *ngIf="userDetailsForm.controls['vEmailId'].touched  && userDetailsForm.controls['vEmailId'].errors?.['required']">
+                            Email is required
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="userDetailsForm.controls['vEmailId'].touched  && (userDetailsForm.controls['vEmailId'].errors?.['email'] || userDetailsForm.controls['vEmailId'].errors?.['pattern'])">
+                            Please enter valid email address
+                        </span>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Mobile Number</label>
+                        <input type="number" class="form-control" id="vPhoneNo" formControlName="vPhoneNo"
+                            placeholder="Enter Mobile number" [min]="1000000000" [max]="9999999999">
+                        <span class="text-danger"
+                            *ngIf="userDetailsForm.controls['vPhoneNo'].touched  && userDetailsForm.controls['vPhoneNo'].errors?.['required']">
+                            Phone number is required
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="userDetailsForm.controls['vPhoneNo'].touched  && (userDetailsForm.controls['vPhoneNo'].errors?.['min'] || userDetailsForm.controls['vPhoneNo'].errors?.['max'])">
+                            Please enter valid Mobile Number
+                        </span>
+                    </div>
+                </div>
+
+                <div class="update-btn-cls text-end mt-3 new-assests">
+                    <button type="button" class="btn btn-secondary same-for-all-btn-cls" (click)="onEditUserDetails()"
+                        [disabled]="!userDetailsForm.valid">Update</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+<!-- Personal info code over -->
+
+
+<!-- Personal info code start -->
+<div class="inventory-management-cls profile-all-cls-add">
+    <div class="list-of-asset h-100">
+        <div class="profile-all-cls-add-personal-info">
+            <h5>Change Password</h5>
+            <hr>
+            <form [formGroup]="changePasswordForm">
+                <div class="row personal-info-add-all-in">
+                    <div class="col-lg-3">
+                        <input type="{{ isShowPassword ? 'text' : 'Password' }}" class="form-control"
+                            id="exampleFormControltext1" formControlName="oldPassword" placeholder="Old Password"
+                            [maxlength]="20">
+                        <span class="set-position-right pr-2" style="cursor: pointer;">
+                            <img alt=""
+                                src="{{ isShowPassword ? './../../../../assets/img/eye_view.png' : './../../../../assets/img/eye_close.png' }}"
+                                (click)="isShowPassword  = ( isShowPassword === false ) ? true : false;">
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="(changePasswordFormControl['oldPassword'].touched || isSubmit) && changePasswordFormControl['oldPassword'].errors?.['required']">
+                            Old Password is required
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="(changePasswordFormControl['oldPassword'].touched || isSubmit) && changePasswordFormControl['oldPassword'].errors?.['pattern']">
+                            No white space allowed
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="(changePasswordFormControl['oldPassword'].touched || isSubmit) && (changePasswordFormControl['oldPassword'].errors?.['minlength'] || changePasswordFormControl['oldPassword'].errors?.['maxlength'])">
+                            The Old password should be at least 8-20 characters long
+                        </span>
+                    </div>
+                    <div class="col-lg-3">
+                        <input type="{{ isShowNewPassword ? 'text' : 'Password' }}" class="form-control"
+                            id="exampleFormControltext1" formControlName="newPassword" placeholder="New Password"
+                            [maxlength]="20">
+                        <span class="set-position-right pr-2" style="cursor: pointer;">
+                            <img alt=""
+                                src="{{ isShowNewPassword ? './../../../../assets/img/eye_view.png' : './../../../../assets/img/eye_close.png' }}"
+                                (click)="isShowNewPassword  = ( isShowNewPassword === false ) ? true : false;">
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="(changePasswordFormControl['newPassword'].touched || isSubmit) && changePasswordFormControl['newPassword'].errors?.['required']">
+                            New Password is required
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="(changePasswordFormControl['newPassword'].touched || isSubmit) && changePasswordFormControl['newPassword'].errors?.['pattern']">
+                            No white space allowed
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="(changePasswordFormControl['newPassword'].touched || isSubmit) && (changePasswordFormControl['newPassword'].errors?.['minlength'] || changePasswordFormControl['newPassword'].errors?.['maxlength'])">
+                            The New password should be at least 8-20 characters long
+                        </span>
+                    </div>
+                    <div class="col-lg-3">
+                        <input type="{{ isShowConfirmPassword ? 'text' : 'Password' }}" class="form-control"
+                            id="exampleFormControltext1" formControlName="confirmPassword"
+                            placeholder="Confirm Password" [maxlength]="20">
+                        <span class="set-position-right pr-2" style="cursor: pointer;">
+                            <img alt=""
+                                src="{{ isShowConfirmPassword ? './../../../../assets/img/eye_view.png' : './../../../../assets/img/eye_close.png' }}"
+                                (click)="isShowConfirmPassword  = ( isShowConfirmPassword === false ) ? true : false;">
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="(changePasswordFormControl['confirmPassword'].touched || isSubmit) && changePasswordFormControl['confirmPassword'].errors?.['required']">
+                            Confirm Password is required
+                        </span>
+                        <span class="text-danger"
+                            *ngIf="(changePasswordFormControl['confirmPassword'].touched || isSubmit) && changePasswordFormControl['confirmPassword'].errors?.['matching']">
+                            New password and confirm password doesn't match
+                        </span>
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-2">
+                        <div class="right-side-all">
+                            <button type="submit" class="btn btn-outline-primary editable-cls-all w-75"
+                                style="float: right;" (click)="onCLickChangePassword()">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!-- Personal info code over -->

@@ -1,0 +1,82 @@
+<div class="login-part-design-cls">
+
+	<div class="login-signup-part">
+		<h3>Sign In to your Account</h3>
+		<p>Welcome back! please enter your detail</p>
+	</div>
+
+	<form [formGroup]="loginForm" (ngSubmit)="login()">
+		<div class="mt-4">
+			<div class="email-part position-relative input-same-type-cls">
+				<div class="mb-3">
+					<span class="set-position-proer">
+						<svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M17 1H3C1.89543 1 1 1.89543 1 3V13C1 14.1046 1.89543 15 3 15H17C18.1046 15 19 14.1046 19 13V3C19 1.89543 18.1046 1 17 1Z"
+								stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+							<path d="M1 3L10 9L19 3" stroke="#64748B" stroke-width="1.5" stroke-linecap="round"
+								stroke-linejoin="round" />
+						</svg>
+					</span>
+					<input type="email" class="form-control" id="exampleFormControlInput1" formControlName="vEmailId"
+						placeholder="Email">
+					<span class="text-danger"
+						*ngIf="(loginFormControl['vEmailId'].touched || isLoginSubmit) && loginFormControl['vEmailId'].errors?.['required']">
+						Email id is required
+					</span>
+					<span class="text-danger"
+						*ngIf="(loginFormControl['vEmailId'].touched || isLoginSubmit) && (loginFormControl['vEmailId'].errors?.['email'] || loginFormControl['vEmailId'].errors?.['pattern'])">
+						Please enter valid email address
+					</span>
+				</div>
+			</div>
+			<div class="password-part position-relative input-same-type-cls">
+				<div class="mb-3">
+					<span class="set-position-proer">
+						<svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M13 9H3C1.89543 9 1 9.89543 1 11V17C1 18.1046 1.89543 19 3 19H13C14.1046 19 15 18.1046 15 17V11C15 9.89543 14.1046 9 13 9Z"
+								stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+							<path
+								d="M8 15C8.55228 15 9 14.5523 9 14C9 13.4477 8.55228 13 8 13C7.44772 13 7 13.4477 7 14C7 14.5523 7.44772 15 8 15Z"
+								stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+							<path
+								d="M4 9V5C4 3.93913 4.42143 2.92172 5.17157 2.17157C5.92172 1.42143 6.93913 1 8 1C9.06087 1 10.0783 1.42143 10.8284 2.17157C11.5786 2.92172 12 3.93913 12 5V9"
+								stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</span>
+					<input type="{{ isShowPassword ? 'text' : 'password' }}" class="form-control" id="exampleFormControltext1" formControlName="txPassword" placeholder="Password" [maxlength]="20"> 
+					<span class="set-position-right">
+						<img alt=""src="{{ isShowPassword ? './../../../../assets/img/eye_view.png' : './../../../../assets/img/eye_close.png' }}" (click)="isShowPassword  = ( isShowPassword === false ) ? true : false;">
+					</span>
+					<span class="text-danger"
+						*ngIf="(loginFormControl['txPassword'].touched || isLoginSubmit) && loginFormControl['txPassword'].errors?.['required']">
+						Password is required
+					</span>
+					<span class="text-danger"
+						*ngIf="(loginFormControl['txPassword'].touched || isLoginSubmit) && loginFormControl['txPassword'].errors?.['pattern']">
+						No white space allowed
+					</span>
+					<span class="text-danger"
+						*ngIf="(loginFormControl['txPassword'].touched || isLoginSubmit) && (loginFormControl['txPassword'].errors?.['minlength'] || loginFormControl['txPassword'].errors?.['maxlength'])">
+						The password should be at least 8-20 characters long
+					</span>
+				</div>
+			</div>
+			<div class="d-flex align-items-center justify-content-between mt-4">
+				<div class="form-check remember-check">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="rememberMe">
+					<label class="form-check-label" for="flexCheckDefault">
+						Remember me
+					</label>
+				</div>
+				<div class="forgot-pass">
+					<a [routerLink]="['/forgot-password']">Forgot Password?</a>
+				</div>
+			</div>
+			<div class="button-all-same mt-4">
+				<button type="submit" class="btn btn-primary">Sign In</button>
+			</div>
+		</div>
+	</form>
+</div>

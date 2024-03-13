@@ -1,0 +1,48 @@
+.system-management-cls {
+    p {
+        color: #64748b;
+        font-weight: 500;
+        font-size: 14px;
+    }
+}
+
+.system-management-portion {
+    label {
+        color: #64748b;
+        font-weight: 500;
+        font-size: 14px;
+    }
+    p {
+        color: #0f172a;
+        font-weight: 700;
+        font-size: 14px;
+    }
+}
+
+.inner-part-system-info {
+    svg {
+        cursor: pointer;
+    }
+}
+
+.preview-img {
+    height: 200px;
+    width: 400px;
+}
+
+.upload-file {
+    cursor: pointer !important;
+    pointer-events: painted;
+
+    input {
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        cursor: pointer !important;
+    }
+}
+.imageModal{
+    max-height: 97vh !important;
+    overflow: hidden;
+}

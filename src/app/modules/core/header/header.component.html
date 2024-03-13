@@ -1,0 +1,36 @@
+<section class="right-side-part">
+    <nav class="navbar navbar-expand navbar-white navbar-light navigation-unique">
+        <ul class="navbar-nav mt-2">
+            <li class="nav-item">
+                <Strong>{{ headerName }}</Strong>
+                <p class="mb-0" style="font-size: small;">Detailed information about your store</p>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto align-items-center">
+            <!-- <li class="nav-item">
+                <a class="nav-link pe-0 notification-cls">
+                    <img alt="" src="../../../../assets/img/notification.png" alt="notification"></a>
+            </li> -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" data-toggle="dropdown" href="#">
+                    <div class="profile-pic mr-1">
+                        <img alt="" *ngIf="!imageURL" src="/assets/img/40px.png" class="img-circle mr-1"
+                            alt="User Image">
+
+                        <img alt="" *ngIf="imageURL" [src]="imageURL" class="img-circle mr-1" alt="User Image">
+
+
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item pointer" [routerLink]="['/admin/settings']">
+                        <em class="fas fa-user mr-2"></em> Profile
+                    </a>
+                    <a class="dropdown-item pointer" [routerLink]="['/admin/settings']">
+                        <em class="fas fa-key mr-2"></em> Password
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</section>

@@ -1,0 +1,227 @@
+<!-- Tab view all start -->
+<div class="all-pills-btn-cls-add mt-4">
+  <div class="d-flex align-items-center justify-content-between four-side-padding-cls">
+    <ul class="nav nav-pills mb-3 table-tab-pills" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-request-tab" data-bs-toggle="pill" type="button" role="tab"
+          aria-controls="pills-request" aria-selected="true" (click)="currentPage = 1; changeTabforRequest(0)">
+          Requests Received
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-received-tab" data-bs-toggle="pill" type="button" role="tab"
+          aria-controls="pills-received" aria-selected="false" (click)="currentPage = 1; changeTabforRequest(1)">
+          My Requests
+        </button>
+      </li>
+    </ul>
+
+    <div class="new-assests">
+      <button type="button" class="btn btn-primary same-for-all-btn-cls" data-bs-toggle="modal"
+        data-bs-target="#requestedModal" [disabled]="accountType != '1'">
+        <span class="spacing-divide">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 1.3335V10.6668" stroke="white" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M1.3335 6H10.6668" stroke="white" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
+        Add Request
+      </button>
+
+      <!-- add request modal  -->
+      <div class="modal fade new-assets-modal" id="requestedModal" tabindex="-1" aria-labelledby="requestedModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <form [formGroup]="addRequestForm" (ngSubmit)="addRequest()">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title mb-0" id="createsystemeModalLabel">
+                  Add Request
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                  (click)="onModalClose()"></button>
+              </div>
+              <div class="modal-body p-4">
+                <div class="assign-employee">
+                  <div class="heading-product">
+                    <h6>Please enter the following details</h6>
+                  </div>
+
+                  <div class="details-employee mt-4">
+                    <div class="row my-2">
+                      <div class="col-xl-12">
+                        <label>AssetType <span class="mandatory">*</span></label>
+                        <select class="form-select selection-forms" aria-label="Default select example"
+                          formControlName="iDeviceType">
+                          <option value="" selected disabled>
+                            --AssetType--
+                          </option>
+                          <option *ngFor="let item of assetTypes" [value]="item.iAssetId">
+                            {{ item.vAssetType }}
+                          </option>
+                        </select>
+                        <span class="text-danger"
+                          *ngIf="(addRequestFormControl['iDeviceType'].touched || isAddRequestSubmit) && addRequestFormControl['iDeviceType'].errors?.['required']">
+                          Asset type is required
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="row my-2">
+                      <div class="col-xl-12">
+                        <label>Device Information <span class="mandatory">*</span></label>
+                        <textarea class="form-control" id="Device Information" formControlName="vDeviceInfo"
+                          placeholder="Device Information" rows="10" cols="50">
+                        </textarea>
+                        <span class="text-danger"
+                          *ngIf="(addRequestFormControl['vDeviceInfo'].touched || isAddRequestSubmit) && addRequestFormControl['vDeviceInfo'].errors?.['required']">
+                          Device information is required
+                        </span>
+                        <span class="text-danger"
+                          *ngIf="(addRequestFormControl['vDeviceInfo'].touched || isAddRequestSubmit) && addRequestFormControl['vDeviceInfo'].errors?.['pattern']">
+                          Please enter a valid device information value
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary save-btn w-25" [disabled]="!addRequestForm.valid"
+                  data-bs-dismiss="modal">
+                  Add
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- add request modal -->
+    </div>
+  </div>
+
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-request" role="tabpanel" aria-labelledby="pills-request-tab"
+      tabindex="0">
+      <!-- Request management code start -->
+      <div class="inventory-management-cls">
+        <div class="list-of-asset h-100">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="list-of-folders">
+              <h6 class="assets-list">List of Requests</h6>
+            </div>
+          </div>
+          <!-- table portion start -->
+          <div class="table-responsive p-3 mt-4 table-related-inventory">
+            <table class="table">
+              <caption></caption>
+              <thead>
+                <tr>
+                  <th scope="col">Sr No.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Device Type</th>
+                  <th scope="col">Status</th>
+                  <th scope="" col>Action</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let item of requestList">
+                <tr>
+                  <td>{{ item.iRequestId }}</td>
+                  <td>
+                    {{ item?.UserDetail?.vFirstName }}
+                    {{ item?.UserDetail?.vLastName }}
+                  </td>
+                  <td>{{ item?.UserDetail?.vEmailId }}</td>
+                  <td>{{ item?.Asset?.vAssetType }}</td>
+                  <td *ngIf="item.bIsAccept && !item.bIsClosed">
+                    <button type="button" class="btn btn-primary assigned">
+                      Accepted
+                    </button>
+                  </td>
+                  <td *ngIf="item.bIsAccept && item.bIsClosed">
+                    <button type="button" class="btn btn-primary rejcted-closed">
+                      Closed
+                    </button>
+                  </td>
+                  <td *ngIf="item.bIsPending">
+                    <button type="button" class="btn btn-primary unassigned">
+                      Pending
+                    </button>
+                  </td>
+                  <td *ngIf="item.bIsReject">
+                    <button type="button" class="btn btn-primary reject-btn-cls">
+                      Rejected
+                    </button>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center pointer-set">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        (click)="onClickDetailPage(item.iRequestId)">
+                        <path
+                          d="M13.8955 6.52225C13.3833 5.40225 11.3749 1.75 6.99993 1.75C2.62493 1.75 0.616508 5.40225 0.104342 6.52225C0.0355889 6.67234 0 6.83549 0 7.00058C0 7.16567 0.0355889 7.32882 0.104342 7.47892C0.616508 8.59775 2.62493 12.25 6.99993 12.25C11.3749 12.25 13.3833 8.59775 13.8955 7.47775C13.9641 7.32783 13.9996 7.16488 13.9996 7C13.9996 6.83512 13.9641 6.67217 13.8955 6.52225ZM6.99993 11.0833C3.32084 11.0833 1.60409 7.95317 1.16659 7.00642C1.60409 6.04683 3.32084 2.91667 6.99993 2.91667C10.6703 2.91667 12.3876 6.03342 12.8333 7C12.3876 7.96658 10.6703 11.0833 6.99993 11.0833Z"
+                          fill="#6B7789" />
+                        <path
+                          d="M7.00016 4.0835C6.4233 4.0835 5.85939 4.25456 5.37975 4.57504C4.90011 4.89553 4.52627 5.35105 4.30552 5.884C4.08476 6.41695 4.027 7.0034 4.13954 7.56918C4.25208 8.13495 4.52987 8.65465 4.93777 9.06256C5.34567 9.47046 5.86537 9.74825 6.43115 9.86079C6.99693 9.97333 7.58337 9.91557 8.11632 9.69481C8.64927 9.47406 9.1048 9.10022 9.42528 8.62058C9.74577 8.14093 9.91683 7.57703 9.91683 7.00016C9.9159 6.2269 9.60832 5.48557 9.06154 4.93879C8.51475 4.39201 7.77343 4.08442 7.00016 4.0835ZM7.00016 8.75016C6.65405 8.75016 6.3157 8.64753 6.02792 8.45523C5.74013 8.26294 5.51583 7.98963 5.38337 7.66986C5.25092 7.35009 5.21627 6.99822 5.28379 6.65875C5.35131 6.31929 5.51798 6.00747 5.76273 5.76273C6.00747 5.51798 6.31929 5.35131 6.65876 5.28379C6.99822 5.21626 7.35009 5.25092 7.66986 5.38337C7.98963 5.51583 8.26294 5.74013 8.45524 6.02791C8.64753 6.3157 8.75016 6.65405 8.75016 7.00016C8.75016 7.46429 8.56579 7.90941 8.2376 8.2376C7.90941 8.56579 7.46429 8.75016 7.00016 8.75016Z"
+                          fill="#6B7789" />
+                      </svg>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="d-flex align-items-center justify-content-between" *ngIf="!requestList?.length">
+              <p class="align-items-center">No data found!!!</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-between shows-more" *ngIf="requestList?.length > 0">
+            <div class="first-parts d-flex align-items-center">
+              <label style="white-space: nowrap" class="mb-0">Show rows:</label>
+              <select class="form-select ms-3" aria-label="Default select example" (change)="onSetLimits($event)">
+                <option value="5" selected>5 items</option>
+                <option value="10">10 items</option>
+              </select>
+            </div>
+            <div class="last-pagination">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item me-4 same-common-cls" (click)="previousPage()"
+                    [class.disabled]="currentPage == 1">
+                    <a class="page-link" href="javascript:void[0]">
+                      <span class="left-ics">
+                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7 1L1 7L7 13" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="page-item pagination-text me-3 same-common-cls amount-text" *ngFor="let page of pages">
+                    <a class="page-link" href="javascript:void[0]" (click)="onSelectPage(page)"
+                      [class.active]="page === currentPage">{{ page }}</a>
+                  </li>
+                  <li class="page-item ms-4 same-common-cls" (click)="nextPage()"
+                    [class.disabled]="currentPage === numberOfPage">
+                    <a class="page-link" href="javascript:void[0]">
+                      <span class="right-ics">
+                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 13L7 7L1 1" stroke="#64748B" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <!-- table portion over -->
+        </div>
+      </div>
+      <!-- Request management code over -->
+    </div>
+  </div>
+</div>
+<!-- Tab view all over -->

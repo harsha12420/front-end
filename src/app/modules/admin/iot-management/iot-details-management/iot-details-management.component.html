@@ -1,0 +1,410 @@
+<div class="inventory-management-cls">
+  <div class="inner-part-system-info">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="left-arrow" (click)="onBack()">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="48" height="48" rx="12" fill="white" />
+          <path
+            d="M31.9199 23.28H17.5562L23.0563 18.0413C23.3443 17.7669 23.3555 17.3112 23.0811 17.0232C22.8072 16.7355 22.3514 16.724 22.0631 16.9983L15.7818 22.9815C15.51 23.2537 15.3599 23.6151 15.3599 24C15.3599 24.3845 15.51 24.7463 15.7944 25.0303L22.0634 31.0013C22.2027 31.1341 22.3813 31.2 22.5599 31.2C22.7499 31.2 22.94 31.1251 23.0815 30.9764C23.3558 30.6884 23.3447 30.233 23.0567 29.9587L17.5335 24.72H31.9199C32.3173 24.72 32.6399 24.3974 32.6399 24C32.6399 23.6025 32.3173 23.28 31.9199 23.28Z"
+            fill="black" />
+        </svg>
+      </div>
+      <!-- <div class="right-arrow-btn new-assests">
+        <button type="button" class="btn btn-primary same-for-all-btn-cls mr-1" data-bs-toggle="modal"
+          data-bs-target="#assignAssetseModal"
+          *ngIf="!inventoryDetails?.UserDetail && !inventoryDetails?.bIsTrash && !inventoryDetails?.bIsRepair">
+          <span class="spacing-divide">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 1.3335V10.6668" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M1.3335 6H10.6668" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+          Assign to Other
+        </button>
+        <button type="button" class="btn btn-primary same-for-all-btn-cls mr-1" style="background-color: #ff8080;"
+          data-bs-toggle="modal" data-bs-target="#addToTrashModal" [disabled]="inventoryDetails?.bIsTrash">
+          Trash
+        </button>
+        <button type="button" class="btn btn-primary same-for-all-btn-cls mr-1" style="background-color: #6b7789;"
+          data-bs-toggle="modal" data-bs-target="#moveToRepairModal"
+          [disabled]="inventoryDetails?.bIsTrash || inventoryDetails?.bIsRepair">
+          Repair
+        </button>
+        <button type="button" class="btn btn-primary same-for-all-btn-cls mr-1" data-bs-toggle="modal"
+          data-bs-target="#unassignAssetseModal" *ngIf="inventoryDetails?.UserDetail">
+          Unassign
+        </button>
+      </div> -->
+    </div>
+  </div>
+  <div class="list-of-asset mt-4 h-100 system-management-cls">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="list-of-folders">
+        <h6 class="assets-list">IOT Inventory Information</h6>
+        <hr />
+      </div>
+    </div>
+    <div class="dividing-portion mt-0 system-management-portion">
+      <div class="dividing-portion">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="same-portion-heading-all">
+              <label>Employee ID</label>
+              <p>{{ inventoryDetails?.vEmployeeId }}</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="same-portion-heading-all">
+              <label>IOT Asset Id ( PK )</label>
+              <p>{{ inventoryDetails?.iIotInventoryId }}</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="same-portion-heading-all">
+              <label>IOT Asset Name</label>
+              <p>{{ inventoryDetails?.vIotAssetName }}</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="same-portion-heading-all">
+              <label>Bill ID ( FK )</label>
+              <p>{{ inventoryDetails?.vBillNo }}</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="same-portion-heading-all">
+              <label>Serial Number</label>
+              <p>{{ inventoryDetails?.vSerial_ModelNumber }}</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="same-portion-heading-all">
+              <label>Brand / Maker</label>
+              <p>{{ inventoryDetails?.vBrandMaker }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="same-portion-heading-all">
+              <label>Expiry Date</label>
+              <p>
+                {{ inventoryDetails?.iExpiryDate}}
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="same-portion-heading-all">
+              <label>Purchase Date</label>
+              <p>
+                {{
+                inventoryDetails?.iPurchaseDate
+                }}
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="same-portion-heading-all">
+              <label>Warranty Period</label>
+              <p>{{ inventoryDetails?.vWarrentyPeriod }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="same-portion-heading-all">
+              <label>Comment</label>
+              <p>{{ inventoryDetails?.vComment }}</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="same-portion-heading-all">
+              <label>Project Name</label>
+              <p>{{ inventoryDetails?.vProjectName }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="list-of-asset mt-4 h-100 new-assests">
+    <div class="list-of-folders d-flex align-items-center justify-content-between">
+      <h6 class="assets-list col-6">List of History</h6>
+      <select class="btn btn-primary same-for-all-btn-cls mr-1 only-for-this-select-option"
+        style="background-color: #6b7789;" [(ngModel)]="selectedFormat" (change)="downloadHistoryReport()">
+        <option *ngFor="let item of formats" [value]="item">{{item}}</option>
+      </select>
+    </div> -->
+
+
+  <!-- table portion start -->
+  <!-- <div class="table-responsive p-3 mt-4 table-related-inventory">
+      <table class="table">
+        <caption></caption>
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Employee Id</th>
+            <th scope="col">Reporting Manager</th>
+            <th scope="col">Department</th>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of inventoryHistoryList">
+          <tr>
+            <td>
+              {{ item?.UserDetail?.vFirstName ? item?.UserDetail?.vFirstName : '-' }}
+              {{ item?.UserDetail?.vLastName ? item?.UserDetail?.vLastName : '' }}
+            </td>
+            <td>{{ item.vEmployeeId ? item.vEmployeeId : '-' }}</td>
+            <td>{{ item?.UserDetail?.vReportingManagerName ? item?.UserDetail?.vReportingManagerName : '-' }}</td>
+            <td>{{ item?.UserDetail?.vDepartmentName ? item?.UserDetail?.vDepartmentName : '-' }}</td>
+            <td>{{ item?.iCreatedAt * 1000 | date }}</td>
+            <td *ngIf="item?.tiInventoryFlag === 1">
+              <button type="button" class="btn btn-primary assigned">Assigned</button>
+            </td>
+            <td *ngIf="item?.tiInventoryFlag === 0">
+              <button type="button" class="btn btn-primary unassigned">Unassigned</button>
+            </td>
+            <td *ngIf="item?.tiInventoryFlag === 2">
+              <button type="button" class="btn btn-primary unassigned combination-all-cls-trash">Repair</button>
+            </td>
+            <td *ngIf="item?.tiInventoryFlag === 3">
+              <button type="button" class="btn btn-primary unassigned combination-all-cls">Trash</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
+  <!-- table portion over -->
+  <!-- </div> -->
+
+</div>
+
+<!-- assign modal code start -->
+<!-- <div class="modal fade new-assets-modal" id="assignAssetseModal" tabindex="-1" aria-labelledby="assignAssetseModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 mb-0" id="assignAssetseModalLabel">
+          Assign to Employee
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="assignAssetForm.reset(this.assignAssetFormIntialValues)"></button>
+      </div>
+      <form [formGroup]="assignAssetForm">
+        <div class="modal-body p-4">
+          <div class="assign-employee">
+            <div class="heading-product">
+              <h6>Please enter the following details of employee</h6>
+            </div>
+
+            <div class="details-employee mt-2">
+              <div class="row my-2">
+                <div class="col-xl-6">
+                  <label>Employee id <span class="mandatory">*</span></label>
+                  <input type="text" class="form-control" id="vAssetUser" formControlName="vAssetUser"
+                    placeholder="Employee id" (keyup.enter)="searchUserDetailsById()" />
+                  <span class="text-danger"
+                    *ngIf="(assignForm['vAssetUser'].touched || isAssignSubmitted) && assignForm['vAssetUser'].errors?.['required']">
+                    Employee Id is required
+                  </span>
+                </div>
+                <div class="col-xl-6">
+                  <label>Name <span class="mandatory">*</span></label>
+                  <input type="text" formControlName="vFirstName" class="form-control" id="name" placeholder="Name"
+                    readonly />
+                  <span class="text-danger"
+                    *ngIf="(assignForm['vFirstName'].touched || isAssignSubmitted) && assignForm['vFirstName'].errors?.['required']">
+                    Employee name is required
+                  </span>
+                </div>
+              </div>
+
+              <div class="row my-2">
+                <div class="col-xl-6">
+                  <label>Email <span class="mandatory">*</span></label>
+                  <input type="email" formControlName="vEmailId" class="form-control" id="email" placeholder="Email"
+                    readonly />
+                  <span class="text-danger"
+                    *ngIf="(assignForm['vEmailId'].touched || isAssignSubmitted) && assignForm['vEmailId'].errors?.['required']">
+                    Employee Email is required
+                  </span>
+                </div>
+                <div class="col-xl-6">
+                  <label>Department <span class="mandatory">*</span></label>
+                  <input type="text" formControlName="vDepartmentName" class="form-control" id="department"
+                    placeholder="Department" readonly />
+                  <span class="text-danger"
+                    *ngIf="(assignForm['vDepartmentName'].touched || isAssignSubmitted) && assignForm['vDepartmentName'].errors?.['required']">
+                    Department is required
+                  </span>
+                </div>
+              </div>
+
+              <div class="row my-2">
+                <div class="col-xl-6">
+                  <label>Designation <span class="mandatory">*</span></label>
+                  <input type="text" formControlName="vDesignationName" class="form-control" id="reportingManager"
+                    placeholder="Designation" readonly />
+                  <span class="text-danger"
+                    *ngIf="(assignForm['vDesignationName'].touched || isAssignSubmitted) && assignForm['vDesignationName'].errors?.['required']">
+                    Designation is required
+                  </span>
+                </div>
+                <div class="col-xl-6">
+                  <label>Reporting Manager <span class="mandatory">*</span></label>
+                  <input type="text" formControlName="vReportingManagerName" class="form-control" id="manager"
+                    placeholder="Reporting Manager" readonly />
+                  <span class="text-danger"
+                    *ngIf="(assignForm['vReportingManagerName'].touched || isAssignSubmitted) && assignForm['vReportingManagerName'].errors?.['required']">
+                    Reporting Manager name is required
+                  </span>
+                </div>
+              </div>
+
+              <div class="row my-2">
+                <div class="col-xl-6">
+                  <label>Start Date <span class="mandatory">*</span></label>
+                  <input type="text" class="form-control" id="startDate" [minDate]="minDate" placeholder="Start date"
+                    formControlName="startDate" bsDatepicker (bsValueChange)="onSelectStartDate()" />
+                  <span class="text-danger"
+                    *ngIf="(assignForm['startDate'].touched || isAssignSubmitted) && assignForm['startDate'].errors?.['required']">
+                    Start Date is required
+                  </span>
+                </div>
+                <div class="col-xl-6">
+                  <label>End Date</label>
+                  <input type="text" formControlName="endDate" class="form-control" id="endDate" placeholder="End date"
+                    bsDatepicker [minDate]="minEndDate" />
+                </div>
+              </div>
+
+              <div class="row my-2">
+                <div class="col-xl-6">
+                  <label>Comment <span class="mandatory">*</span></label>
+                  <input type="text" class="form-control" id="vAssignComment" formControlName="vAssignComment"
+                    placeholder="Comment" />
+                  <span class="text-danger"
+                    *ngIf="(assignForm['vAssignComment'].touched || isAssignSubmitted) && assignForm['vAssignComment'].errors?.['required']">
+                    Comment is required
+                  </span>
+                  <span class="text-danger"
+                    *ngIf="(assignForm['vAssignComment'].touched || isRepairSubmitted) && assignForm['vAssignComment'].errors?.['pattern']">
+                    Comment can not start or end with blank spaces
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="float: right" class="my-4">
+            <button type="button" class="btn btn-secondary save-btn" data-bs-dismiss="modal"
+              [disabled]="!assignAssetForm.valid" (click)="onClickAssignAsset()">
+              Assign
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+<!-- assign modal code over -->
+
+<!-- unassign modal code start -->
+<div class="modal fade new-assets-modal" id="unassignAssetseModal" tabindex="-1"
+  aria-labelledby="unassignAssetseModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 mb-0" id="unassignAssetseModalLabel">
+          Unassign
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>Are you sure you want to unassign the Inventory?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary save-btn" data-bs-dismiss="modal" (click)="unAssignInventory()">
+          Unassign
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- unassign modal code over -->
+
+<!-- Add to Trash modal code start -->
+<div class="modal fade new-assets-modal" id="addToTrashModal" tabindex="-1" aria-labelledby="addToTrashModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 mb-0" id="addToTrashModalLabel">
+          Add To Trash
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>Are you sure you want to trash the Inventory?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary save-btn" (click)="onClickTrash()" data-bs-dismiss="modal">
+          Trash
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add to Trash modal code over -->
+
+
+<!-- Move to Repair modal code start -->
+<div class="modal fade new-assets-modal" id="moveToRepairModal" tabindex="-1" aria-labelledby="moveToRepairModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 mb-0" id="moveToRepairModalLabel">
+          Move to Repair
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="repairForm" (ngSubmit)="onClickRepair()">
+        <div class="modal-body p-4">
+          <p>Are you sure you want to move this Inventory to Repair?</p>
+          <div class="details-employee mt-2">
+            <div class="row my-2">
+              <div class="col-xl-6">
+                <label>Comment <span class="mandatory">*</span></label>
+                <input type="text" class="form-control" id="vRepairComment" formControlName="vRepairComment"
+                  placeholder="Comment" />
+                <span class="text-danger"
+                  *ngIf="(repairFormControl['vRepairComment'].touched || isRepairSubmitted) && repairFormControl['vRepairComment'].errors?.['required']">
+                  Comment is required
+                </span>
+                <span class="text-danger"
+                  *ngIf="(repairFormControl['vRepairComment'].touched || isRepairSubmitted) && repairFormControl['vRepairComment'].errors?.['pattern']">
+                  Comment can not start or end with blank spaces
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary save-btn" data-bs-dismiss="modal"
+            [disabled]="!repairForm.valid">
+            Repair
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Move to Repair modal code over -->

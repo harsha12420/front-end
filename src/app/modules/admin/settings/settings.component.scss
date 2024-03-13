@@ -1,0 +1,13 @@
+.upload-file {
+    cursor: pointer !important;
+    pointer-events: painted;
+
+    input {
+        margin-top: 12px;
+        opacity: 0;
+        position: absolute;
+        width: 60%;
+        height: 30%;
+        cursor: pointer !important;
+    }
+}

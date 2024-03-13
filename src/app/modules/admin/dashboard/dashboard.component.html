@@ -1,0 +1,358 @@
+<div class="inner-body-part mt-4">
+    <div class="row">
+        <div class="col-xl-3">
+            <div class="box-dashboard first-box-dashboard">
+                <div class="d-flex align-items-center">
+                    <div class="left-side-img me-4">
+                        <img alt="" src="../../../../assets/img/desktop.png">
+                    </div>
+                    <div class="right-side-text">
+                        <label>Desktop</label>
+                        <p>{{ dashboardAssetsCount?.system ? dashboardAssetsCount?.system : 0 }}</p>
+                    </div>
+                </div>
+                <div class="right-side-text inventory-management-label-text">
+                    <div class="d-flex align-items-center">
+                        <div class="amount-sec-invn" (click)="OnClick('Unassigned','',true)">
+                            <label class="blue-cls-add">Unassign : {{ dashboardAssetsCount?.unassignSystem ? dashboardAssetsCount?.unassignSystem : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn" (click)="OnClick('Assigned','',true)">
+                            <label class="green-cls-add">Assign : {{ dashboardAssetsCount?.assignSystem ? dashboardAssetsCount?.assignSystem : 0 }} |</label>
+                        </div>
+                        <!-- <div class="amount-sec-invn">
+                            <label class="red-color-add">Trash : {{ dashboardAssetsCount?.trashMacMini ? dashboardAssetsCount?.trashMacMini : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn">
+                            <label>Repair : {{ dashboardAssetsCount?.repairMacMini ? dashboardAssetsCount?.repairMacMini : 0 }}</label>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="box-dashboard second-box-dashboard">
+                <div class="d-flex align-items-center">
+                    <div class="left-side-img me-4">
+                        <img alt="" src="../../../../assets/img/windows.png">
+                    </div>
+                    <div class="right-side-text">
+                        <label>Mac Mini</label>
+                        <p>{{ dashboardAssetsCount?.totalMacMini ? dashboardAssetsCount?.totalMacMini : 0 }}</p>
+                    </div>
+                </div>
+                <div class="right-side-text inventory-management-label-text">
+                    <div class="d-flex align-items-center">
+                        <div class="amount-sec-invn"  (click)="OnClick('Unassigned', '17')">
+                            <label class="blue-cls-add">Unassign : {{ dashboardAssetsCount?.unassignMacMini ? dashboardAssetsCount?.unassignMacMini : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn" (click)="OnClick('Assigned', '17')">
+                            <label class="green-cls-add">Assign : {{ dashboardAssetsCount?.assignMacMini ? dashboardAssetsCount?.assignMacMini : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn" (click)="OnClick('Trash', '17')">
+                            <label class="red-color-add">Trash : {{ dashboardAssetsCount?.trashMacMini ? dashboardAssetsCount?.trashMacMini : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn" (click)="OnClick('Repair', '17')">
+                            <label>Repair : {{ dashboardAssetsCount?.repairMacMini ? dashboardAssetsCount?.repairMacMini : 0 }}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="box-dashboard third-box-dashboard">
+                <div class="d-flex align-items-center">
+                    <div class="left-side-img me-4">
+                        <img alt="" src="../../../../assets/img/ios.png">
+                    </div>
+                    <div class="right-side-text">
+                        <label>MacBook</label>
+                        <p>{{ dashboardAssetsCount?.toalMacBook ? dashboardAssetsCount?.toalMacBook : 0 }}</p>
+                    </div>
+                </div>
+                <div class="right-side-text inventory-management-label-text">
+                    <div class="d-flex align-items-center">
+                        <div class="amount-sec-invn" (click)="OnClick('Unassigned', '18')">
+                            <label class="blue-cls-add">Unassign : {{ dashboardAssetsCount?.unassignMacBook ? dashboardAssetsCount?.unassignMacBook : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn" (click)="OnClick('Assigned', '18')">
+                            <label class="green-cls-add">Assign : {{ dashboardAssetsCount?.assignMacBook ? dashboardAssetsCount?.assignMacBook : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn" (click)="OnClick('Trash', '18')">
+                            <label class="red-color-add">Trash : {{ dashboardAssetsCount?.trashMacBook ? dashboardAssetsCount?.trashMacBook : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn" (click)="OnClick('Repair', '18')"> 
+                            <label>Repair : {{ dashboardAssetsCount?.repairMacBook ? dashboardAssetsCount?.repairMacBook : 0 }}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="box-dashboard four-box-dashboard">
+                <div class="d-flex align-items-center">
+                    <div class="left-side-img me-4">
+                        <img alt="" src="../../../../assets/img/macmini.png">
+                    </div>
+                    <div class="right-side-text">
+                        <label>Laptop</label>
+                        <p>{{ dashboardAssetsCount?.Laptop ? dashboardAssetsCount?.Laptop : 0 }}</p>
+                    </div>
+                </div>
+                <div class="right-side-text inventory-management-label-text">
+                    <div class="d-flex align-items-center">
+                        <div class="amount-sec-invn" (click)="OnClick('Unassigned', '1')">
+                            <label class="blue-cls-add">Unassign : {{ dashboardAssetsCount?.unassignedLaptop ? dashboardAssetsCount?.unassignedLaptop : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn" (click)="OnClick('Assigned', '1')">
+                            <label class="green-cls-add">Assign : {{ dashboardAssetsCount?.assignedLaptop ? dashboardAssetsCount?.assignedLaptop : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn"  (click)="OnClick('Trash', '1')">
+                            <label class="red-color-add">Trash : {{ dashboardAssetsCount?.trashLaptop ? dashboardAssetsCount?.trashLaptop : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn" (click)="OnClick('Repair', '1')">
+                            <label>Repair : {{ dashboardAssetsCount?.repairLaptop ? dashboardAssetsCount?.repairLaptop : 0 }}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-xl-3">
+            <div class="box-dashboard second-box-dashboard">
+                <div class="d-flex align-items-center">
+                    <div class="left-side-img me-4">
+                        <img alt="" src="../../../../assets/img/windows.png">
+                    </div>
+                    <div class="right-side-text">
+                        <label>Mobile</label>
+                        <p>{{ dashboardAssetsCount?.totalMobile ? dashboardAssetsCount?.totalMobile : 0 }}</p>
+                    </div>
+                </div>
+                <div class="right-side-text inventory-management-label-text">
+                    <div class="d-flex align-items-center">
+                        <div class="amount-sec-invn" (click)="OnClick('Unassigned', '8')">
+                            <label class="blue-cls-add">Unassign : {{ dashboardAssetsCount?.unassignedMobile ? dashboardAssetsCount?.unassignedMobile : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn" (click)="OnClick('Assigned', '8')">
+                            <label class="green-cls-add">Assign : {{ dashboardAssetsCount?.assignedMobile ? dashboardAssetsCount?.assignedMobile : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn"  (click)="OnClick('Trash', '8')">
+                            <label class="red-color-add">Trash : {{ dashboardAssetsCount?.repairMobile ? dashboardAssetsCount?.repairMobile : 0 }} |</label>
+                        </div>
+                        <div class="amount-sec-invn" (click)="OnClick('Repair', '8')">
+                            <label>Repair : {{ dashboardAssetsCount?.trashMobile ? dashboardAssetsCount?.trashMobile : 0 }}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="mobile-device mt-4">
+        <h2>Mobile Device</h2>
+        <hr>
+        <div class="row mt-4">
+            <div class="col-xl-3">
+                <div class="box-dashboards">
+                    <div class="device-broke">
+                        <div class="left-side-img me-4">
+                            <img alt=""src="../../../../assets/img/android.png">
+                        </div>
+                        <div class="right-side-text d-flex align-items-center justify-content-between mt-3">
+                            <label>Desktop System</label>
+                            <p class="me-3">80</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="box-dashboards">
+                    <div class="device-broke">
+                        <div class="left-side-img me-4">
+                            <img alt=""src="../../../../assets/img/tablet.png">
+                        </div>
+                        <div class="right-side-text d-flex align-items-center justify-content-between mt-3">
+                            <label>Windows Laptop</label>
+                            <p class="me-3">80</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="box-dashboards">
+                    <div class="device-broke">
+                        <div class="left-side-img me-4">
+                            <img alt=""src="../../../../assets/img/ioss.png">
+                        </div>
+                        <div class="right-side-text d-flex align-items-center justify-content-between mt-3">
+                            <label>ios Macbook</label>
+                            <p class="me-3">80</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="box-dashboards last-cls-remove">
+                    <div class="device-broke">
+                        <div class="left-side-img me-4">
+                            <img alt=""src="../../../../assets/img/ipads.png">
+                        </div>
+                        <div class="right-side-text d-flex align-items-center justify-content-between mt-3">
+                            <label>Mac Mini</label>
+                            <p class="me-3">80</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="request-set-portion mt-4">
+        <div class="row mt-4">
+            <div class="col-xl-7">
+                <div class="main-portion-request request-set">
+                    <h2>Requests</h2>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div class="request-bg">
+                                <p>Total Request</p>
+                                <label class="bg-blues">{{ dashboardAssetsCount?.totalRequests ?
+                                    dashboardAssetsCount?.totalRequests : 0 }}</label>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="request-bg">
+                                <p>Total Accepted Request</p>
+                                <label class="bg-oranges">{{ dashboardAssetsCount?.totalAcceptedRequests ?
+                                    dashboardAssetsCount?.totalAcceptedRequests : 0 }}</label>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="request-bg">
+                                <p>Total Pending Request</p>
+                                <label class="bg-greens">{{ dashboardAssetsCount?.totalPendingRequests ?
+                                    dashboardAssetsCount?.totalPendingRequests : 0 }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="main-portion-requests request-sets inventory-project">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="main-portion request-set left-side-support-cls">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="first-side">
+                                                    <p class="mb-0">No of Inventory</p>
+                                                </div>
+                                                <div class="second-side">
+                                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g clip-path="url(#clip0_435_2944)">
+                                                            <path
+                                                                d="M8.16666 1.14906C8.61583 1.14906 9.04749 1.32406 9.38583 1.66239L13.3117 5.35489C14.2275 6.27072 14.2275 7.74072 13.3233 8.64489C13.3233 8.64489 13.3175 8.65072 13.3117 8.65656L9.37416 12.3607C8.88416 12.8566 8.15499 13.0024 7.49583 12.7282C6.83666 12.4541 6.42249 11.8416 6.41666 11.1299L6.41666 9.92822L2.31583 9.92822C1.03833 9.92822 -5.37351e-06 8.87822 -5.26081e-06 7.58906L-5.15984e-06 6.43406C-5.04713e-06 5.14489 1.03833 4.09489 2.31583 4.09489L6.41666 4.09489L6.41666 2.89322C6.41666 2.17572 6.83083 1.56322 7.49583 1.28906C7.71749 1.19572 7.94499 1.15489 8.16666 1.15489L8.16666 1.14906ZM12.5008 7.81072C12.9442 7.36156 12.9383 6.63822 12.495 6.18906L8.57499 2.49656C8.31249 2.23406 8.02083 2.32739 7.93916 2.35656C7.85749 2.39156 7.58333 2.53156 7.58333 2.88156L7.58333 4.66072C7.58333 4.98156 7.32083 5.24406 6.99999 5.24406L2.31583 5.24406C1.67999 5.24406 1.16666 5.76906 1.16666 6.41656L1.16666 7.57156C1.16666 8.21906 1.68583 8.74406 2.31583 8.74406L6.99999 8.74406C7.32083 8.74406 7.58333 9.00656 7.58333 9.32739L7.58333 11.1124C7.58333 11.4624 7.85749 11.6024 7.93916 11.6374C8.02083 11.6724 8.31249 11.7657 8.56333 11.5149L12.5008 7.81072Z"
+                                                                fill="#0F172A" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_435_2944">
+                                                                <rect width="14" height="14" fill="white"
+                                                                    transform="translate(14 14) rotate(-180)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-4">
+                                                <div class="col-xl-6">
+                                                    <div class="first-side-assign">
+                                                        <p>Assign Inventory</p>
+                                                        <h6>{{ dashboardAssetsCount?.assignedInventory ?
+                                                            dashboardAssetsCount?.assignedInventory : 0 }}</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="second-side-unassign">
+                                                        <p>Unassign Inventory</p>
+                                                        <h6>{{ dashboardAssetsCount?.unassignedInventory ?
+                                                            dashboardAssetsCount?.unassignedInventory : 0 }}</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="main-portion request-set right-side-support-cls">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="first-side">
+                                                    <p class="mb-0">Unassigned System & Accessories</p>
+                                                </div>
+                                                <div class="second-side">
+                                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g clip-path="url(#clip0_435_2944)">
+                                                            <path
+                                                                d="M8.16666 1.14906C8.61583 1.14906 9.04749 1.32406 9.38583 1.66239L13.3117 5.35489C14.2275 6.27072 14.2275 7.74072 13.3233 8.64489C13.3233 8.64489 13.3175 8.65072 13.3117 8.65656L9.37416 12.3607C8.88416 12.8566 8.15499 13.0024 7.49583 12.7282C6.83666 12.4541 6.42249 11.8416 6.41666 11.1299L6.41666 9.92822L2.31583 9.92822C1.03833 9.92822 -5.37351e-06 8.87822 -5.26081e-06 7.58906L-5.15984e-06 6.43406C-5.04713e-06 5.14489 1.03833 4.09489 2.31583 4.09489L6.41666 4.09489L6.41666 2.89322C6.41666 2.17572 6.83083 1.56322 7.49583 1.28906C7.71749 1.19572 7.94499 1.15489 8.16666 1.15489L8.16666 1.14906ZM12.5008 7.81072C12.9442 7.36156 12.9383 6.63822 12.495 6.18906L8.57499 2.49656C8.31249 2.23406 8.02083 2.32739 7.93916 2.35656C7.85749 2.39156 7.58333 2.53156 7.58333 2.88156L7.58333 4.66072C7.58333 4.98156 7.32083 5.24406 6.99999 5.24406L2.31583 5.24406C1.67999 5.24406 1.16666 5.76906 1.16666 6.41656L1.16666 7.57156C1.16666 8.21906 1.68583 8.74406 2.31583 8.74406L6.99999 8.74406C7.32083 8.74406 7.58333 9.00656 7.58333 9.32739L7.58333 11.1124C7.58333 11.4624 7.85749 11.6024 7.93916 11.6374C8.02083 11.6724 8.31249 11.7657 8.56333 11.5149L12.5008 7.81072Z"
+                                                                fill="#0F172A" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_435_2944">
+                                                                <rect width="14" height="14" fill="white"
+                                                                    transform="translate(14 14) rotate(-180)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-4">
+                                                <div class="col-xl-4">
+                                                    <div class="unassign-side">
+                                                        <p>Laptop</p>
+                                                        <h6>{{ dashboardAssetsCount?.unassignedLaptop ?
+                                                            dashboardAssetsCount?.unassignedLaptop : 0 }}</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4">
+                                                    <div class="unassign-side">
+                                                        <p>Mobile</p>
+                                                        <h6>{{ dashboardAssetsCount?.unassignedMobile ?
+                                                            dashboardAssetsCount?.unassignedMobile : 0 }}</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4">
+                                                    <div class="unassign-side">
+                                                        <p>Motherboard</p>
+                                                        <h6>{{ dashboardAssetsCount?.unassignedMotherboard ?
+                                                            dashboardAssetsCount?.unassignedMotherboard : 0 }}</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-xl-5">
+                <div class="no-of-chart main-portion request-set h-100">
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>

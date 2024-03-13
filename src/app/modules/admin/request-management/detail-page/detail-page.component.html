@@ -1,0 +1,326 @@
+<div class="inventory-management-cls mt-4">
+  <div class="inner-part-system-info">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="left-arrow" routerLink="/admin/request-management">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="48" height="48" rx="12" fill="white" />
+          <path
+            d="M31.9199 23.28H17.5562L23.0563 18.0413C23.3443 17.7669 23.3555 17.3112 23.0811 17.0232C22.8072 16.7355 22.3514 16.724 22.0631 16.9983L15.7818 22.9815C15.51 23.2537 15.3599 23.6151 15.3599 24C15.3599 24.3845 15.51 24.7463 15.7944 25.0303L22.0634 31.0013C22.2027 31.1341 22.3813 31.2 22.5599 31.2C22.7499 31.2 22.94 31.1251 23.0815 30.9764C23.3558 30.6884 23.3447 30.233 23.0567 29.9587L17.5335 24.72H31.9199C32.3173 24.72 32.6399 24.3974 32.6399 24C32.6399 23.6025 32.3173 23.28 31.9199 23.28Z"
+            fill="black" />
+        </svg>
+      </div>
+      <div class="right-arrow-btn new-assests d-flex align-items-center justify-content-between">
+        <div class="accept-btn" *ngIf="!requestDetails?.bIsAccept && !requestDetails?.bIsReject">
+          <button type="button" class="btn btn-primary same-for-all-btn-cls me-2">
+            <span class="spacing-divide" (click)="acceptRejectRequest(true)">Accept
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="me-2">
+                <g clip-path="url(#clip0_677_6339)">
+                  <path
+                    d="M12.1427 6.06533C12.4007 6.328 12.3967 6.75 12.1333 7.008L9.18267 9.90467C8.66067 10.4167 7.98867 10.672 7.316 10.672C6.65067 10.672 5.98533 10.4213 5.46533 9.91933L4.19933 8.67467C3.93667 8.41667 3.93333 7.99467 4.19133 7.732C4.44867 7.46867 4.872 7.46533 5.134 7.724L6.396 8.96467C6.91333 9.46467 7.73 9.462 8.25 8.95267L11.2 6.05667C11.462 5.798 11.8827 5.80267 12.1427 6.06533ZM16 8C16 12.4113 12.4113 16 8 16C3.58867 16 0 12.4113 0 8C0 3.58867 3.58867 0 8 0C12.4113 0 16 3.58867 16 8ZM14.6667 8C14.6667 4.324 11.676 1.33333 8 1.33333C4.324 1.33333 1.33333 4.324 1.33333 8C1.33333 11.676 4.324 14.6667 8 14.6667C11.676 14.6667 14.6667 11.676 14.6667 8Z"
+                    fill="white" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_677_6339">
+                    <rect width="16" height="16" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div class="reject-btn">
+          <button type="button" class="btn btn-primary same-for-all-btn-cls me-2 rejected-btn-cls"
+            *ngIf="!requestDetails?.bIsAccept && !requestDetails?.bIsReject" data-bs-toggle="modal"
+            data-bs-target="#rejectModal">
+            <span class="spacing-divide">
+              Reject
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="me-2">
+                <g clip-path="url(#clip0_677_6335)">
+                  <path
+                    d="M10.4713 6.47133L8.94267 8L10.4713 9.52867C10.732 9.78933 10.732 10.2107 10.4713 10.4713C10.3413 10.6013 10.1707 10.6667 10 10.6667C9.82933 10.6667 9.65867 10.6013 9.52867 10.4713L8 8.94267L6.47133 10.4713C6.34133 10.6013 6.17067 10.6667 6 10.6667C5.82933 10.6667 5.65867 10.6013 5.52867 10.4713C5.268 10.2107 5.268 9.78933 5.52867 9.52867L7.05733 8L5.52867 6.47133C5.268 6.21067 5.268 5.78933 5.52867 5.52867C5.78933 5.268 6.21067 5.268 6.47133 5.52867L8 7.05733L9.52867 5.52867C9.78933 5.268 10.2107 5.268 10.4713 5.52867C10.732 5.78933 10.732 6.21067 10.4713 6.47133ZM16 8C16 12.4113 12.4113 16 8 16C3.58867 16 0 12.4113 0 8C0 3.58867 3.58867 0 8 0C12.4113 0 16 3.58867 16 8ZM14.6667 8C14.6667 4.324 11.676 1.33333 8 1.33333C4.324 1.33333 1.33333 4.324 1.33333 8C1.33333 11.676 4.324 14.6667 8 14.6667C11.676 14.6667 14.6667 11.676 14.6667 8Z"
+                    fill="white" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_677_6335">
+                    <rect width="16" height="16" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </span>
+          </button>
+
+          <div class="modal fade new-assets-modal reject-modal-cls-add" id="rejectModal" tabindex="-1"
+            aria-labelledby="rejectModalLabel" aria-hidden="true">
+            <form [formGroup]="rejectRequestFrom" (ngSubmit)="acceptRejectRequest(false)">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title" id="rejectModalLabel">Reject</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body p-4 rejexted-modal-body">
+                    <div class="reason-changes">
+                      <h5>Are you sure want to Reject this request?</h5>
+
+                      <h6 class="mt-4 reason-change-cls">Reason <span class = "mandatory">*</span></h6>
+                      <div class="text-area-cls">
+                        <textarea class="form-control" placeholder="Enter reason here" id="floatingTextarea"
+                          formControlName="txRejectReason" class="mt-3"></textarea>
+                        <span class="text-danger"
+                          *ngIf="(rejectRequestFromControl['txRejectReason'].touched || isRejectRequestSubmit) && rejectRequestFromControl['txRejectReason'].errors?.['required']">
+                          Reason is required
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary w-50 rejext-cls" data-bs-dismiss="modal"
+                      [disabled]="!rejectRequestFrom.valid">
+                      Yes, Reject
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="close-btn">
+          <button type="button" class="btn btn-primary same-for-all-btn-cls closing-btn-cls" data-bs-toggle="modal"
+            data-bs-target="#closetModal" *ngIf="!requestDetails?.bIsClosed && requestDetails?.bIsAccept">
+            <span class="spacing-divide">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="me-2">
+                <g clip-path="url(#clip0_677_6331)">
+                  <path
+                    d="M15.4128 0.587602C15.1738 0.345687 14.8765 0.169506 14.5495 0.07608C14.2225 -0.0173459 13.8769 -0.0248582 13.5462 0.054269L2.8795 2.30094C2.26522 2.38518 1.68666 2.63925 1.20897 3.03454C0.731284 3.42983 0.373445 3.95064 0.175753 4.53831C-0.0219392 5.12598 -0.0516323 5.75718 0.0900176 6.36081C0.231668 6.96445 0.539034 7.51655 0.977503 7.95494L2.12284 9.0996C2.18483 9.16157 2.23399 9.23516 2.2675 9.31615C2.30102 9.39714 2.31824 9.48395 2.31817 9.5716V11.6836C2.31964 11.9806 2.388 12.2734 2.51817 12.5403L2.51284 12.5449L2.53017 12.5623C2.72551 12.955 3.04456 13.2727 3.43817 13.4663L3.4555 13.4836L3.46017 13.4783C3.72708 13.6084 4.01988 13.6768 4.31684 13.6783H6.42884C6.60554 13.6781 6.77507 13.7481 6.90017 13.8729L8.04484 15.0176C8.35185 15.328 8.71727 15.5746 9.12002 15.7431C9.52278 15.9117 9.95491 15.9988 10.3915 15.9996C10.7553 15.9992 11.1167 15.9397 11.4615 15.8236C12.0438 15.6324 12.5611 15.2823 12.955 14.8127C13.3489 14.3432 13.6038 13.7729 13.6908 13.1663L15.9408 2.47627C16.0241 2.1427 16.0192 1.79322 15.9266 1.46211C15.834 1.13101 15.657 0.829649 15.4128 0.587602ZM3.06684 8.15827L1.92084 7.0136C1.65398 6.75318 1.46695 6.42203 1.38169 6.05904C1.29644 5.69605 1.31649 5.31626 1.4395 4.96427C1.55877 4.60315 1.77924 4.28389 2.0747 4.04444C2.37016 3.805 2.72818 3.65546 3.10617 3.6136L13.6668 1.39027L3.65017 11.4083V9.5716C3.65118 9.30916 3.60014 9.04912 3.50002 8.80653C3.39989 8.56393 3.25266 8.3436 3.06684 8.15827ZM12.3808 12.9383C12.3296 13.3065 12.1768 13.6532 11.9396 13.9394C11.7023 14.2256 11.39 14.44 11.0376 14.5585C10.6852 14.677 10.3068 14.695 9.94479 14.6104C9.58278 14.5258 9.25151 14.342 8.98817 14.0796L7.8415 12.9329C7.65642 12.7468 7.43626 12.5993 7.19378 12.4988C6.9513 12.3983 6.69131 12.3469 6.42884 12.3476H4.59217L14.6102 2.33294L12.3808 12.9383Z"
+                    fill="white" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_677_6331">
+                    <rect width="16" height="16" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </span>
+            Close
+          </button>
+
+          <div class="modal fade new-assets-modal" id="closetModal" tabindex="-1" aria-labelledby="closetModalLabel"
+            aria-hidden="true">
+            <form [formGroup]="closeRequestFrom" (ngSubmit)="closeRequest()">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title" id="rejectModalLabel">
+                      Close Ticket
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="
+                    selectedFileUrl = '';
+                    vBillImageFile = '';
+                    closeRequestFrom.reset()
+                  "></button>
+                  </div>
+                  <div class="modal-body p-4 rejexted-modal-body">
+                    <div class="assign-employee">
+                      <div class="details-employee position-relative">
+                        <div class="row my-3">
+                          <div class="col-xl-12">
+                            <div class="heading-product">
+                              <h6 class="mb-3">Bill Number <span class="mandatory">*</span></h6>
+                            </div>
+                            <input type="text" class="form-control" id="firstname" placeholder="Enter bill number"
+                              formControlName="vBillNo" />
+                            <span class="text-danger"
+                              *ngIf="(closeRequestFromControl['vBillNo'].touched || isCloseRequestSubmit) && closeRequestFromControl['vBillNo'].errors?.['required']">
+                              Bill Number is required
+                            </span>
+                            <span class="text-danger"
+                              *ngIf="(closeRequestFromControl['vBillNo'].touched || isCloseRequestSubmit) && closeRequestFromControl['vBillNo'].errors?.['pattern']">
+                              Please enter alphanumeric value
+                            </span>
+                          </div>
+                        </div>
+
+                        <div class="row my-3">
+                          <div class="col-xl-12">
+                            <div class="heading-product">
+                              <h6 class="mb-3">Vendor Name <span class="mandatory">*</span></h6>
+                            </div>
+                            <input type="text" class="form-control" id="vendorname" placeholder="Enter Vendor Name"
+                              formControlName="vVendorDetails" />
+                            <span class="text-danger"
+                              *ngIf="(closeRequestFromControl['vVendorDetails'].touched || isCloseRequestSubmit) && closeRequestFromControl['vVendorDetails'].errors?.['required']">
+                              Vendor Name is required
+                            </span>
+                            <span class="text-danger"
+                              *ngIf="(closeRequestFromControl['vVendorDetails'].touched || isCloseRequestSubmit) && closeRequestFromControl['vVendorDetails'].errors?.['pattern']">
+                              Enter a valid vendor name
+                            </span>
+                          </div>
+                        </div>
+
+                        <div class="row my-3">
+                          <div class="col-xl-12">
+                            <div class="heading-product">
+                              <h6 class="mb-3">Upload bill <span class="mandatory">*</span></h6>
+                            </div>
+                            <div class="upload-file">
+                              <input type="file" style="display: none" #fileInputBill
+                                formControlName="billImage" (change)="fileChangeEvent($event)" />
+                              <span class="text-danger" *ngIf="billImageError && isCloseRequestSubmit">
+                                Bill is required
+                              </span>
+                              <div class="d-block text-center">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" *ngIf="!vBillImageFile"
+                                  (click)="fileInputBill.click()" xmlns="http://www.w3.org/2000/svg">
+                                  <path
+                                    d="M9.33327 23.9996C7.66964 23.9996 6.07415 23.3675 4.89779 22.2422C3.72142 21.117 3.06055 19.5909 3.06055 17.9996C3.06055 16.4083 3.72142 14.8822 4.89779 13.757C6.07415 12.6318 7.66964 11.9996 9.33327 11.9996C9.72619 10.2492 10.8756 8.71092 12.5287 7.72323C13.3473 7.23417 14.2648 6.89501 15.229 6.72509C16.1931 6.55518 17.1851 6.55785 18.1481 6.73294C19.1111 6.90804 20.0264 7.25213 20.8417 7.74558C21.6569 8.23903 22.3562 8.87217 22.8996 9.60885C23.443 10.3455 23.8199 11.1713 24.0087 12.0391C24.1975 12.9068 24.1945 13.7996 23.9999 14.6663H25.3333C26.571 14.6663 27.7579 15.1579 28.6331 16.0331C29.5083 16.9083 29.9999 18.0953 29.9999 19.3329C29.9999 20.5706 29.5083 21.7576 28.6331 22.6328C27.7579 23.5079 26.571 23.9996 25.3333 23.9996H23.9999"
+                                    stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                  <path d="M12 20L16 16L20 20" stroke="#2563EB" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                  <path d="M16 16V28" stroke="#2563EB" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                </svg>
+                                <img (click)="fileInputBill.click()" *ngIf="vBillImageFile?.type == 'image/png' || vBillImageFile?.type == 'image/jpg' || vBillImageFile?.type == 'image/jpeg'" [src]="selectedFileUrl"
+                                  alt="" class="preview-img" />
+                                <h6 class="mt-2" (click)="fileInputBill.click()">Upload Bill</h6>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <a *ngIf="vBillImageFile?.type == 'application/pdf'" [href]="pdfUrl" target="_blank">{{vBillImageFile?.name}}</a>
+                    </div>
+                  </div>
+                  <div class="modal-footer closest-ticket-add justify-content-center">
+                    <button type="button" class="btn btn-outline-primary discard-cls" (click)="
+                        selectedFileUrl = '';
+                        vBillImageFile = '';
+                        closeRequestFrom.reset()
+                      " data-bs-dismiss="modal">
+                      Discard
+                    </button>
+                    <button type="submit" class="btn btn-primary closing-cls" [disabled]="!closeRequestFrom.valid"
+                      data-bs-dismiss="modal">
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-of-asset mt-4 h-100 system-management-cls">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="list-of-folders">
+        <h6 class="assets-list mb-0">User Details</h6>
+      </div>
+      <div class="pending-list-btn">
+        <label *ngIf="requestDetails?.bIsAccept && !requestDetails?.bIsClosed"><button type="button"
+            class="btn btn-primary assigned">
+            Accepted
+          </button></label>
+        <label *ngIf="requestDetails?.bIsAccept && requestDetails?.bIsClosed"><button type="button"
+            class="btn btn-primary rejcted-closed">
+            Closed
+          </button></label>
+        <label *ngIf="requestDetails?.bIsPending"><button type="button" class="btn btn-primary unassigned">
+            Pending
+          </button></label>
+        <label *ngIf="requestDetails?.bIsReject"><button type="button" class="btn btn-primary reject-btn-cls">
+            Rejected
+          </button></label>
+      </div>
+    </div>
+    <hr />
+    <div class="dividing-portion mt-0 system-management-portion">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="same-portion-heading-all">
+            <label>Name</label>
+            <p>
+              {{ requestDetails?.UserDetail?.vFirstName }}
+              {{ requestDetails?.UserDetail?.vLastName }}
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="same-portion-heading-all">
+            <label>Email</label>
+            <p>{{ requestDetails?.UserDetail?.vEmailId }}</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="same-portion-heading-all">
+            <label>Department</label>
+            <p>{{ requestDetails?.UserDetail?.vDepartmentName }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-of-asset mt-4 h-100 system-management-cls">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="list-of-folders">
+        <h6 class="assets-list">Device Information</h6>
+        <hr />
+      </div>
+    </div>
+    <div class="dividing-portion mt-0 system-management-portion">
+      <div class="row">
+        <div class="col-lg-2">
+          <div class="same-portion-heading-all">
+            <label>Request ID</label>
+            <p>{{ requestDetails?.iRequestId }}</p>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="same-portion-heading-all">
+            <label>Asset Name</label>
+            <p>{{ requestDetails?.Asset?.vAssetType }}</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="same-portion-heading-all">
+            <label>Device information</label>
+            <p>{{ requestDetails?.vDeviceInfo }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-of-asset mt-4 h-100">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="list-of-folders">
+        <h6 class="assets-list">Bill Document</h6>
+        <img *ngIf="requestDetails?.Bill?.vBillImage && !pdfUrl " [src]="requestDetails?.Bill?.vBillImage" alt=""
+          class="preview-img mt-2" data-bs-target="#imageModal" data-bs-toggle="modal" />
+        <div *ngIf="pdfUrl" class="mt-5">
+          <a [href]="pdfUrl" target="_blank">{{ pdfName }}</a>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="invoice-bg-add" *ngIf="!pdfUrl"></div>
+  </div>
+</div>
+<!-- Image modal -->
+<div class="modal fade new-assets-modal imageModal" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <img [src]="requestDetails?.Bill?.vBillImage" alt="" style="max-height: 97vh;">
+    </div>
+  </div>
+<div>
